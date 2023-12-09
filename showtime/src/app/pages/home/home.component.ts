@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Banner, MovieDetails } from 'src/app/movie.interface';
 import { MovieapiserviceService } from 'src/app/services/movieapiservice.service';
 
 @Component({
@@ -9,15 +10,15 @@ import { MovieapiserviceService } from 'src/app/services/movieapiservice.service
 export class HomeComponent {
   constructor(private service :MovieapiserviceService){}
 
-  bannerResult:any=[];
-  trendingMovieResult:any=[]
-  actionMovieResult: any = [];
-  adventureMovieResult: any = [];
-  animationMovieResult: any = [];
-  comedyMovieResult: any = [];
-  documentaryMovieResult: any = [];
-  sciencefictionMovieResult: any = [];
-  thrillerMovieResult: any = [];
+  bannerResult:MovieDetails[]=[];
+  trendingMovieResult:MovieDetails[]=[]
+  actionMovieResult: MovieDetails[] = [];
+  adventureMovieResult: MovieDetails[] = [];
+  animationMovieResult: MovieDetails[] = [];
+  comedyMovieResult: MovieDetails[] = [];
+  documentaryMovieResult: MovieDetails[] = [];
+  sciencefictionMovieResult: MovieDetails[] = [];
+  thrillerMovieResult: MovieDetails[] = [];
   ngOnInit():void{
     this.bannerData();
     this.trendingdata()
@@ -36,7 +37,8 @@ export class HomeComponent {
 
   bannerData(){
     this.service.bannerApiData().subscribe((result)=>{
-      console.log(result,"bannerresult#")
+      console.log(result.results,"bannerresult#")
+      if(result.results)
       this.bannerResult=result.results;
     });
   }
@@ -45,12 +47,14 @@ export class HomeComponent {
     this.service.trendingMovieApiData().subscribe((result)=>{
       console.log(result,"#trendingresult")
       console.log(typeof result.results)
+      if(result.results)
       this.trendingMovieResult=result.results
     })
   }
   // action 
   actionMovie() {
     this.service.fetchActionMovies().subscribe((result) => {
+      if(result.results)
       this.actionMovieResult = result.results;
     });
   }
@@ -61,6 +65,7 @@ export class HomeComponent {
   // adventure 
   adventureMovie() {
     this.service.fetchAdventureMovies().subscribe((result) => {
+      if(result.results)
       this.adventureMovieResult = result.results;
     });
   }
@@ -69,6 +74,7 @@ export class HomeComponent {
   // animation 
   animationMovie() {
     this.service.fetchAnimationMovies().subscribe((result) => {
+      if(result.results)
       this.animationMovieResult = result.results;
     });
   }
@@ -77,6 +83,7 @@ export class HomeComponent {
   // comedy 
   comedyMovie() {
     this.service.fetchComedyMovies().subscribe((result) => {
+      if(result.results)
       this.comedyMovieResult = result.results;
     });
   }
@@ -84,6 +91,7 @@ export class HomeComponent {
   // documentary 
   documentaryMovie() {
     this.service.fetchDocumentaryMovies().subscribe((result) => {
+      if(result.results)
       this.documentaryMovieResult = result.results;
     });
   }
@@ -92,13 +100,16 @@ export class HomeComponent {
   // science-fiction 
   sciencefictionMovie() {
     this.service.fetchScienceFictionMovies().subscribe((result) => {
+      if(result.results)
       this.sciencefictionMovieResult = result.results;
     });
   }
 
   // thriller
   thrillerMovie() {
+   
     this.service.fetchThrillerMovies().subscribe((result) => {
+      if(result.results)
       this.thrillerMovieResult = result.results;
     });
   }

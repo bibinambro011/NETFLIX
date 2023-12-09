@@ -10,12 +10,14 @@ import {HttpClientModule} from "@angular/common/http";
 import { MovieapiserviceService } from './services/movieapiservice.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SearchComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    
   ],
   imports: [
     BrowserModule,

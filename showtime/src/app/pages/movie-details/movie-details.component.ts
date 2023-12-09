@@ -17,7 +17,7 @@ export class MovieDetailsComponent implements OnInit {
   getMovieVideoResult:any;
   getMovieCastResult:any;
   ngOnInit(): void {
-    let getParamId = this.router.snapshot.paramMap.get('id');
+    let getParamId = this.router.snapshot.paramMap.get('id') as string
     console.log(getParamId,'getparamid#');
   
     this.getMovie(getParamId);
@@ -26,30 +26,21 @@ export class MovieDetailsComponent implements OnInit {
   }
 
 
-  getMovie(id:any){
+  getMovie(id:string){
     this.service.getMovieDetails(id).subscribe(async(result)=>{
         console.log(result,'getmoviedetails#');
         this.getMovieDetailResult = await result;
 
-        // updatetags
-        this.title.setTitle(`${this.getMovieDetailResult.original_title} | ${this.getMovieDetailResult.tagline}`);
-        this.meta.updateTag({name:'title',content:this.getMovieDetailResult.original_title});
-        this.meta.updateTag({name:'description',content:this.getMovieDetailResult.overview});
-     
-        // facebook
-        this.meta.updateTag({property:'og:type',content:"website"});
-        this.meta.updateTag({property:'og:url',content:``});
-        this.meta.updateTag({property:'og:title',content:this.getMovieDetailResult.original_title});
-        this.meta.updateTag({property:'og:description',content:this.getMovieDetailResult.overview});
-        this.meta.updateTag({property:'og:image',content:`https://image.tmdb.org/t/p/original/${this.getMovieDetailResult.backdrop_path}`});
+        
 
     });
   }
 
-  getVideo(id:any)
+  getVideo(id:string)
   {
     this.service.getMovieVideo(id).subscribe((result)=>{
         console.log(result,'getMovieVideo#');
+        if(result.results)
         result.results.forEach((element:any) => {
             if(element.type=="Trailer")
             {
@@ -60,7 +51,7 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  getMovieCast(id:any)
+  getMovieCast(id:string)
   {
     this.service.getMovieCast(id).subscribe((result)=>{
       console.log(result,'movieCast#');
