@@ -1,4 +1,4 @@
-<h6>This is a Netflix app created using Angular that allows users to browse movies and TV shows using data from an open API thememovieDB.</h6>
+<h3>This is a Netflix app created using Angular that allows users to browse movies and TV shows using data from an open API thememovieDB.</h3>
  <h1>FEATURES</h1>
  <ul>
    <li>Browse movies and TV shows</li>
